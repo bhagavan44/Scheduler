@@ -1,4 +1,6 @@
-﻿namespace Jobs.Service
+﻿using System.Configuration;
+
+namespace Jobs.Service
 {
     partial class SchedulerInstaller
     {
@@ -37,11 +39,12 @@
             this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
-            
+
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = "Scheduler";
+            var config = ConfigurationManager.OpenExeConfiguration(this.GetType().Assembly.Location);
+            this.serviceInstaller1.ServiceName = config.AppSettings.Settings["Name"].Value;
             this.serviceInstaller1.Description = "This is my custom scheduler to run recurring jobs";
             this.serviceInstaller1.DisplayName = "My Scheduler";
             //this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;

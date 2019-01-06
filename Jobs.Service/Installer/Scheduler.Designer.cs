@@ -1,4 +1,6 @@
-﻿namespace Jobs.Service
+﻿using System.Configuration;
+
+namespace Jobs.Service
 {
     partial class Scheduler
     {
@@ -29,7 +31,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.ServiceName = "Scheduler";
+            var config = ConfigurationManager.OpenExeConfiguration(this.GetType().Assembly.Location);
+            this.ServiceName = config.AppSettings.Settings["Name"].Value;
         }
 
         #endregion
