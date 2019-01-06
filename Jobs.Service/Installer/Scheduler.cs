@@ -5,7 +5,7 @@ using System.ServiceProcess;
 
 namespace Jobs.Service
 {
-    internal partial class Scheduler : ServiceBase
+    public partial class Scheduler : ServiceBase
     {
         private IScheduler scheduler;
 
@@ -17,6 +17,7 @@ namespace Jobs.Service
 
         protected override void OnStart(string[] args)
         {
+            base.OnStart(args);
             scheduler.Start();
 
             IJobDetail JobDetail = JobBuilder.Create<Job1>().WithIdentity("Job1", "Group1").Build();
@@ -34,6 +35,13 @@ namespace Jobs.Service
         protected override void OnStop()
         {
             scheduler.Shutdown();
+            base.OnStop();
+        }
+
+        protected override void OnShutdown()
+        {
+            scheduler.Shutdown();
+            base.OnShutdown();
         }
     }
 }

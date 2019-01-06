@@ -31,22 +31,20 @@
             this.components = new System.ComponentModel.Container();
             this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
             this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             // 
             // serviceProcessInstaller1
             // 
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
-            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = "MyScheduler";
+            this.serviceInstaller1.ServiceName = "Scheduler";
             this.serviceInstaller1.Description = "This is my custom scheduler to run recurring jobs";
             this.serviceInstaller1.DisplayName = "My Scheduler";
-            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            //this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // SchedulerInstaller
             // 
@@ -55,13 +53,11 @@
                 this.serviceProcessInstaller1,
                 this.serviceInstaller1
             });
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
         }
 
         #endregion
 
         private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
         private System.ServiceProcess.ServiceInstaller serviceInstaller1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
