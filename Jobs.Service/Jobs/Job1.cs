@@ -1,8 +1,8 @@
-﻿using Jobs.Service.Services;
-using Quartz;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Jobs.Service.Services;
+using Quartz;
 
 namespace Jobs.Service.Jobs
 {
@@ -10,30 +10,33 @@ namespace Jobs.Service.Jobs
     {
         public async Task Execute(IJobExecutionContext context)
         {
-            WriteToFile("Service is recall at " + DateTime.Now);
+            await Task.Run(() =>
+            {
+                WriteToFile("Service is recall at " + DateTime.Now);
+            });
         }
 
-        public void WriteToFile(string Message)
+        public void WriteToFile(string message)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\Logs\\ServiceLog_" + DateTime.Now.Date.ToShortDateString().Replace('/', '_') + ".txt";
+            var filepath = AppDomain.CurrentDomain.BaseDirectory + "\\Logs\\ServiceLog_" + DateTime.Now.Date.ToShortDateString().Replace('/', '_') + ".txt";
             if (!File.Exists(filepath))
             {
                 // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(filepath))
                 {
-                    sw.WriteLine(Message);
+                    sw.WriteLine(message);
                 }
             }
             else
             {
                 using (StreamWriter sw = File.AppendText(filepath))
                 {
-                    sw.WriteLine(Message);
+                    sw.WriteLine(message);
                 }
             }
         }

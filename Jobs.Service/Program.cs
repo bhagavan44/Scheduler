@@ -1,4 +1,5 @@
 ﻿using System.ServiceProcess;
+using Jobs.Service.Installer;
 
 namespace Jobs.Service
 {
@@ -6,12 +7,11 @@ namespace Jobs.Service
     {
         private static void Main(string[] args)
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+            var servicesToRun = new ServiceBase[]
             {
                 new Scheduler()
             };
-            ServiceBase.Run(ServicesToRun);
+            ServiceBase.Run(servicesToRun);
         }
     }
 }

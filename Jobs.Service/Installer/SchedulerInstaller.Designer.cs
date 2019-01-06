@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Jobs.Service
+namespace Jobs.Service.Installer
 {
     partial class SchedulerInstaller
     {

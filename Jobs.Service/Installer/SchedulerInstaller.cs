@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Jobs.Service
+namespace Jobs.Service.Installer
 {
     [RunInstaller(true)]
     public partial class SchedulerInstaller : System.Configuration.Install.Installer
