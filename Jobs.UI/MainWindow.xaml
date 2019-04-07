@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -32,10 +33,16 @@
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Id}" />
                     <GridViewColumn Header="Group" DisplayMemberBinding="{Binding Group}" />
+                    <GridViewColumn Header="State" DisplayMemberBinding="{Binding State}" />
+                    <GridViewColumn Header="TriggerType" DisplayMemberBinding="{Binding TriggerType}" />
                     <GridViewColumn Header="NextRunTime" DisplayMemberBinding="{Binding NextRunTime,StringFormat=s}" />
                     <GridViewColumn Header="LastRunTime" DisplayMemberBinding="{Binding LastRunTime,StringFormat=s}" />
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5">
+            <Button Content="Run" Width="50" Click="Button_Run_Click" />
+        </StackPanel>
     </Grid>
 </Window>

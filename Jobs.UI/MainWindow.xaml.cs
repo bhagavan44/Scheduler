@@ -70,5 +70,14 @@ namespace Jobs.UI
             }
             return jobs;
         }
+
+        private void Button_Run_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListView.SelectedItem is JobModel selectedJob)
+            {
+                scheduler.TriggerJob(new JobKey(selectedJob.Id, selectedJob.Group));
+                MessageBox.Show("Job triggered");
+            }
+        }
     }
 }
