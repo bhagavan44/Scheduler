@@ -30,7 +30,7 @@ namespace Jobs.UI.Installer
                 .WithIdentity("myTrigger", "group1")
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(5)
+                    .WithIntervalInMinutes(5)
                     .WithMisfireHandlingInstructionIgnoreMisfires()
                     .RepeatForever())
                   .Build();
